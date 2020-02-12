@@ -4,7 +4,7 @@
     "resourceGroup": "<your-resource-group-name>",
     "createResourceGroup": true,
     "location": "<your-workspace-location>",
-    "sku": "<your-sku-name>",
+    "sku": "<your-sku>",
     "storageAccount": "Microsoft.Storage/storageAccounts/<your-storage-account-name>",
     "keyVault": "Microsoft.KeyVault/vaults/<your-key-vault-name>",
     "appInsights": "Microsoft.Insights/components/<your-app-insights-name>",
