@@ -3,7 +3,8 @@ ADD . /app
 WORKDIR /app
 
 # Install dependencies in app source directory.
-RUN pip install --target=/app azureml-sdk pkg_resources
+RUN pip install --target=/app setuptools
+RUN pip install --target=/app azureml-sdk
 
 # Distroless container image with Python and basics like SSL certificates.
 FROM gcr.io/distroless/python3-debian10
