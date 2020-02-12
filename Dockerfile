@@ -3,6 +3,7 @@ ADD . /app
 WORKDIR /app
 
 # Install dependencies in app source directory.
+RUN pip install setuptools
 RUN pip install --target=/app -r requirements.txt
 
 # Distroless container image with Python and basics like SSL certificates.

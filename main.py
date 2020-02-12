@@ -3,7 +3,7 @@ import json
 from azureml.core import Workspace
 from azureml.exceptions import WorkspaceException
 from azureml.core.authentication import AzureCliAuthentication
-from azureml.core.authentication import AzureCliAuthentication
+
 
 def main():
     # Loading input values
@@ -20,7 +20,7 @@ def main():
     except:
         print(f"::error::Could not load parameter file in {parameters_file_path}. Please provide a parameter file in your repository (e.g. .aml/workspace.json).")
         return
-    
+
     # Loading Workspace
     cli_auth = AzureCliAuthentication()
     try:
@@ -57,7 +57,7 @@ def main():
             except WorkspaceException as exception:
                 print(f"::error::Creating new Workspace failed: {exception}")
                 return
-    
+
     # Write Workspace ARM properties to config file
     print("::debug::Writing Workspace ARM properties to config file")
     config_file_path = os.environ.get("GITHUB_WORKSPACE", default=".aml")
@@ -67,6 +67,7 @@ def main():
         file_name=config_file_name
     )
     print("::debug::Successfully finised Azure Machine Learning Workspace Action")
+
 
 if __name__ == "__main__":
     main()
