@@ -5,7 +5,7 @@ WORKDIR /app
 # Install dependencies in app source directory.
 #RUN apt-get install python-setuptools
 #RUN sudo pip install setuptools
-RUN pip install azureml-sdk
+RUN pip install --target=/app --upgrade azureml-sdk
 
 # Distroless container image with Python and basics like SSL certificates.
 FROM gcr.io/distroless/python3-debian10
