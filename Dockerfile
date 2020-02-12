@@ -3,7 +3,7 @@ ADD . /app
 WORKDIR /app
 
 # Install dependencies in app source directory.
-RUN pip install --target=/app setuptools cffi
+RUN pip install --target=/app --upgrade setuptools cffi
 RUN pip install --target=/app azureml-sdk
 
 # Distroless container image with Python and basics like SSL certificates.
