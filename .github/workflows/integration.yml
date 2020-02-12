@@ -1,0 +1,14 @@
+name: Integration Test
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Self test
+        id: selftest
+        uses: marvinbuss/AMLConnectWorkspace@master
+
+      - name: Check outputs
+        run: |
+          find | sed 's|[^/]*/|- |g'
