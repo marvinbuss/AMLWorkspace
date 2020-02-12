@@ -17,8 +17,8 @@ def main():
     try:
         with open(parameters_file_path) as f:
             parameters = json.load(f)
-    except:
-        print(f"::error::Could not load parameter file in {parameters_file_path}. Please provide a parameter file in your repository (e.g. .aml/workspace.json).")
+    except FileNotFoundError:
+        print(f"::error::Could not find parameter file in {parameters_file_path}. Please provide a parameter file in your repository (e.g. .aml/workspace.json).")
         return
 
     # Loading Workspace
