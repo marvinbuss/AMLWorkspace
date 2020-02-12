@@ -3,7 +3,8 @@ ADD . /app
 WORKDIR /app
 
 # Install dependencies in app source directory.
-RUN sudo pip install setuptools
+RUN apt-get install python-setuptools
+#RUN sudo pip install setuptools
 RUN pip install --target=/app azureml-sdk
 
 # Distroless container image with Python and basics like SSL certificates.
