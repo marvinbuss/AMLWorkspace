@@ -10,7 +10,3 @@ jobs:
       - name: Self test
         id: selftest
         uses: marvinbuss/AMLConnectWorkspace@master
-
-      - name: Check outputs
-        run: |
-          find | sed 's|[^/]*/|- |g'
