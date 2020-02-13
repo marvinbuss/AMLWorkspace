@@ -4,7 +4,7 @@
 
 ## Usage
 
-Describtion.
+Description.
 
 ### Example workflow
 
