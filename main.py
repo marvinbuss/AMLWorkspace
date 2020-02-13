@@ -21,13 +21,8 @@ def main():
         print(f"::error::Could not find parameter file in {parameters_file_path}. Please provide a parameter file in your repository (e.g. .aml/workspace.json).")
         return
 
-    # Initialize authentication
-    try:
-        cli_auth = AzureCliAuthentication()
-    except AuthenticationException as exception:
-        print(f"::error::Could not retrieve user token please use Azure/login action first: {exception}")
-    
     # Loading Workspace
+    cli_auth = AzureCliAuthentication()
     try:
         print("::debug::Loading existing Workspace")
         ws = Workspace.get(
@@ -37,6 +32,9 @@ def main():
             auth=cli_auth
         )
         print("::debug::Successfully loaded existing Workspace")
+    except AuthenticationException as exception:
+        print(f"::error::Could not retrieve user token please use Azure/login action first: {exception}")
+        return
     except WorkspaceException as exception:
         print(f"::debug::Loading existing Workspace failed: {exception}")
         if parameters.get("createWorkspace", False):
