@@ -1,8 +1,7 @@
 FROM python:3
 
-# Copy required files and change workdir
-COPY requirements.txt /app
-COPY main.py /app
+# Copy files and change workdir
+COPY . /app
 WORKDIR /app
 
 # Install dependencies in app source directory.
