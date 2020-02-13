@@ -1,5 +1,5 @@
 FROM python:3
-ADD src/ /app
+COPY src/ /app
 WORKDIR /app
 
 # Install dependencies in app source directory.
