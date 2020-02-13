@@ -5,5 +5,7 @@ WORKDIR /app
 # Install dependencies in app source directory.
 RUN pip install -r requirements.txt
 
+RUN ls
+
 # Execute script
-CMD ["python", "app/main.py"]
+CMD ["python", "main.py"]

@@ -6,11 +6,6 @@ from azureml.core.authentication import AzureCliAuthentication
 
 
 def main():
-    # Writing output file for testing
-    data = {}
-    with open("data.json", "w") as outfile:
-        json.dump(data, outfile)
-
     # Loading input values
     print("::debug::Loading input values")
     parameters_file = os.environ.get("INPUT_PARAMETERSFILE", default=None)
