@@ -1,9 +1,11 @@
 FROM python:3
-COPY ./src/ /app
+COPY . /app
 WORKDIR /app
 
 # Install dependencies in app source directory.
 RUN pip install -r requirements.txt
 
+RUN ls
+
 # Execute script
-ENTRYPOINT ["./main.py"]
+CMD ["python", "main.py"]
