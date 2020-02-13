@@ -12,4 +12,4 @@ WORKDIR /app
 ENV PYTHONPATH /app
 
 # Execute script
-CMD ["python", "main.py"]
+CMD ["main.py"]
