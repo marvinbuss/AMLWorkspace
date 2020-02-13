@@ -1,10 +1,9 @@
-FROM python:3-slim AS builder
+FROM python:3.8-slim AS builder
 ADD . /app
 WORKDIR /app
 
 # Install dependencies in app source directory.
-RUN pip install --target=/app --upgrade setuptools cffi
-RUN pip install --target=/app azureml-sdk
+RUN pip install --target=/app --upgrade azureml-sdk
 
 # Distroless container image with Python and basics like SSL certificates.
 FROM gcr.io/distroless/python3-debian10
