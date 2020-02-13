@@ -3,7 +3,7 @@ ADD src/ /app
 WORKDIR /app
 
 # Install dependencies in app source directory.
-RUN pip install --target=/app -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Execute script
-CMD ["python", "main.py"]
+CMD ["python", "app/main.py"]
