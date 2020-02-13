@@ -11,4 +11,4 @@ RUN pip install -r requirements.txt
 #COPY --from=builder /app /app
 #WORKDIR /app
 #ENV PYTHONPATH /app
-CMD ["main.py"]
+CMD ["python", "main.py"]
