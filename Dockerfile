@@ -6,4 +6,4 @@ WORKDIR /app
 RUN pip install -r requirements.txt
 
 # Execute script
-ENTRYPOINT ["main.py"]
+ENTRYPOINT ["./main.py"]
