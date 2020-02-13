@@ -33,7 +33,7 @@ def main():
         )
         print("::debug::Successfully loaded existing Workspace")
     except AuthenticationException as exception:
-        print(f"::error::Could not retrieve user token please use Azure/login action first: {exception}")
+        print(f"::error::Could not retrieve user token please use Azure/login GitHub Action first to login to Azure: {exception}")
         return
     except WorkspaceException as exception:
         print(f"::debug::Loading existing Workspace failed: {exception}")
