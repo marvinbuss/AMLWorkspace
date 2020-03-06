@@ -8,4 +8,4 @@ WORKDIR /app
 RUN pip install -r requirements.txt
 
 # Execute script
-CMD ["python", "main.py"]
+ENTRYPOINT ["/entrypoint.sh"]
