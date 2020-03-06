@@ -1,11 +1,20 @@
 FROM python:3
 
-# Copy files and change workdir
-COPY . /app
-WORKDIR /app
+LABEL "com.github.actions.name"="Azure Machine Learning Workspace"
+LABEL "com.github.actions.description"="Connect to or create an Azure Machine Learning Workspace with this GitHub Action"
+LABEL "com.github.actions.icon"="arrow-up-right"
+LABEL "com.github.actions.color"="gray-dark"
 
-# Install dependencies in app source directory.
+LABEL version="1.0.0"
+LABEL repository="https://github.com/marvinbuss/AMLWorkspace"
+LABEL homepage="https://github.com/marvinbuss/AMLWorkspace"
+LABEL maintainer=""
+
+ADD requirements.txt requirements.txt
+
 RUN pip install -r requirements.txt
 
-# Execute script
+ADD main.py /main.py
+
+ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

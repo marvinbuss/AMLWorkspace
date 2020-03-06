@@ -8,8 +8,8 @@ from azureml.core.authentication import AzureCliAuthentication
 def main():
     # Loading input values
     print("::debug::Loading input values")
-    parameters_file = os.environ.get("INPUT_PARAMETERSFILE", default=None)
-    subscription_id = os.environ.get("INPUT_SUBSCRIPTIONID", default=None)
+    parameters_file = os.environ.get("INPUT_PARAMETERSFILE", default='')
+    subscription_id = os.environ.get("INPUT_SUBSCRIPTIONID", default='')
 
     # Loading parameters file
     print("::debug::Loading parameters file")
