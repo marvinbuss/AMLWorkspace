@@ -19,7 +19,7 @@ try:
         parameters = json.load(f)
 except FileNotFoundError:
     print(f"::error::Could not find parameter file in {parameters_file_path}. Please provide a parameter file in your repository (e.g. .aml/workspace.json).")
-    return
+    exit()
 
 # Loading Workspace
 cli_auth = AzureCliAuthentication()
@@ -34,7 +34,7 @@ try:
     print("::debug::Successfully loaded existing Workspace")
 except AuthenticationException as exception:
     print(f"::error::Could not retrieve user token please use Azure/login GitHub Action first to login to Azure: {exception}")
-    return
+    exit()
 except WorkspaceException as exception:
     print(f"::debug::Loading existing Workspace failed: {exception}")
     if parameters.get("createWorkspace", False):
@@ -59,7 +59,7 @@ except WorkspaceException as exception:
             )
         except WorkspaceException as exception:
             print(f"::error::Creating new Workspace failed: {exception}")
-            return
+            exit()
 
 # Write Workspace ARM properties to config file
 print("::debug::Writing Workspace ARM properties to config file")
