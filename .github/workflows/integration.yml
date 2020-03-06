@@ -9,4 +9,4 @@ jobs:
       
       - name: Self test
         id: selftest
-        uses: marvinbuss/AMLConnectWorkspace@master
+        uses: marvinbuss/AMLWorkspace@master
