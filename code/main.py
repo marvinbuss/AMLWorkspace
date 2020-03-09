@@ -11,8 +11,7 @@ def main():
     # Loading input values
     print("::debug::Loading input values")
     parameters_file = os.environ.get("INPUT_PARAMETERSFILE", default="workspace.json")
-    azure_credentials = os.environ.get("INPUT_AZURE_CREDENTIALS ", default={})
-    print(type(azure_credentials))
+    azure_credentials = os.environ.get("INPUT_AZURECREDENTIALS ", default={})
 
     # Loading parameters file
     print("::debug::Loading parameters file")
@@ -43,7 +42,7 @@ def main():
         print(f"::error::Could not retrieve user token. Please paste output of `az ad sp create-for-rbac --name <your-sp-name> --role contributor --scopes /subscriptions/<your-subscriptionId>/resourceGroups/<your-rg> --sdk-auth` as value of secret variable: AZURE_CREDENTIALS: {exception}")
         return
     except AuthenticationError as exception:
-        print(f"::error::Microsoft REST Autehntication Error: {exception}")
+        print(f"::error::Microsoft REST Authentication Error: {exception}")
         return
     except AdalError as exception:
         print(f"::error::Active Directory Authentication Library Error: {exception}")
