@@ -14,6 +14,5 @@ ADD requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
 
-RUN mkdir code
-ADD main.py code/main.py
-ENTRYPOINT ["python", "code/main.py"]
+COPY /code /code
+ENTRYPOINT ["./code/entrypoint.sh"]
