@@ -1,7 +1,7 @@
 import os, json
 
 from azureml.core import Workspace
-from azureml.exceptions import WorkspaceException, AuthenticationException
+from azureml.exceptions import WorkspaceException, AuthenticationException, ProjectSystemException
 from azureml.core.authentication import ServicePrincipalAuthentication
 from adal.adal_error import AdalError
 from msrest.exceptions import AuthenticationError
@@ -47,6 +47,9 @@ def main():
         return
     except AdalError as exception:
         print(f"::error::Active Directory Authentication Library Error: {exception}")
+        return
+    except ProjectSystemException as exception:
+        print(f"::error::Workspace authorizationfailed: {exception}")
         return
     except WorkspaceException as exception:
         print(f"::debug::Loading existing Workspace failed: {exception}")
