@@ -2,14 +2,14 @@ import os
 import json
 from azureml.core import Workspace
 from azureml.exceptions import WorkspaceException, AuthenticationException
-from azureml.core.authentication import AzureCliAuthentication
+from azureml.core.authentication import ServicePrincipalAuthentication
 
 
 def main():
     # Loading input values
     print("::debug::Loading input values")
-    parameters_file = os.environ.get("INPUT_PARAMETERSFILE", default='')
-    subscription_id = os.environ.get("INPUT_SUBSCRIPTIONID", default='')
+    parameters_file = os.environ.get("INPUT_PARAMETERSFILE", default="workspace.json")
+    azure_credentials = os.environ.get("INPUT_AZURE_CREDENTIALS ", default={})
 
     # Loading parameters file
     print("::debug::Loading parameters file")
@@ -22,18 +22,22 @@ def main():
         return
 
     # Loading Workspace
-    cli_auth = AzureCliAuthentication()
+    sp_auth = ServicePrincipalAuthentication(
+        tenant_id=azure_credentials.get("tenantId", ""),
+        service_principal_id=azure_credentials.get("clientId", ""),
+        service_principal_password=azure_credentials.get("clientSecret", "")
+    )
     try:
         print("::debug::Loading existing Workspace")
         ws = Workspace.get(
             name=parameters.get("name", None),
-            subscription_id=subscription_id,
+            subscription_id=azure_credentials.get("subscriptionId", ""),
             resource_group=parameters.get("resourceGroup", None),
-            auth=cli_auth
+            auth=sp_auth
         )
         print("::debug::Successfully loaded existing Workspace")
     except AuthenticationException as exception:
-        print(f"::error::Could not retrieve user token please use Azure/login GitHub Action first to login to Azure: {exception}")
+        print(f"::error::Could not retrieve user token. Please paste output of `az ad sp create-for-rbac --name <your-sp-name> --role contributor --scopes /subscriptions/<your-subscriptionId>/resourceGroups/<your-rg> --sdk-auth` as value of secret variable: AZURE_CREDENTIALS: {exception}")
         return
     except WorkspaceException as exception:
         print(f"::debug::Loading existing Workspace failed: {exception}")
@@ -42,7 +46,7 @@ def main():
                 print("::debug::Creating new Workspace")
                 ws = Workspace(
                     name=parameters.get("name", None),
-                    subscription_id=subscription_id,
+                    subscription_id=azure_credentials.get("subscriptionId", ""),
                     resource_group=parameters.get("resourceGroup", None),
                     location=parameters.get("location", None),
                     create_resource_group=parameters.get("createResourceGroup", False),
@@ -55,7 +59,7 @@ def main():
                     cmk_keyvault=parameters.get("cmkKeyVault", None),
                     resource_cmk_uri=parameters.get("resourceCmkUri", None),
                     hbi_workspace=parameters.get("hbiWorkspace", None),
-                    auth=cli_auth
+                    auth=sp_auth
                 )
             except WorkspaceException as exception:
                 print(f"::error::Creating new Workspace failed: {exception}")
