@@ -1,5 +1,5 @@
-import os
-import json
+import os, json
+
 from azureml.core import Workspace
 from azureml.exceptions import WorkspaceException, AuthenticationException
 from azureml.core.authentication import ServicePrincipalAuthentication
@@ -11,8 +11,8 @@ def main():
     # Loading input values
     print("::debug::Loading input values")
     parameters_file = os.environ.get("INPUT_PARAMETERSFILE", default="workspace.json")
-    azure_credentials = os.environ.get("INPUT_AZURECREDENTIALS")
-    print(type(azure_credentials))
+    azure_credentials = os.environ.get("INPUT_AZURECREDENTIALS", default="{}")
+    azure_credentials = json.loads(azure_credentials)
 
     # Loading parameters file
     print("::debug::Loading parameters file")
