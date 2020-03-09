@@ -2,7 +2,7 @@ import os
 import json
 from azureml.core import Workspace
 from azureml.exceptions import WorkspaceException, AuthenticationException
-from azureml.core.authentication import ServicePrincipalAuthentication, Adal
+from azureml.core.authentication import ServicePrincipalAuthentication
 from adal.adal_error import AdalError
 
 
