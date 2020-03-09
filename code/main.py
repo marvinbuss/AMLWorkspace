@@ -4,6 +4,7 @@ from azureml.core import Workspace
 from azureml.exceptions import WorkspaceException, AuthenticationException
 from azureml.core.authentication import ServicePrincipalAuthentication
 from adal.adal_error import AdalError
+from msrest.exceptions import AuthenticationError
 
 
 def main():
@@ -40,7 +41,7 @@ def main():
     except AuthenticationException as exception:
         print(f"::error::Could not retrieve user token. Please paste output of `az ad sp create-for-rbac --name <your-sp-name> --role contributor --scopes /subscriptions/<your-subscriptionId>/resourceGroups/<your-rg> --sdk-auth` as value of secret variable: AZURE_CREDENTIALS: {exception}")
         return
-    except AdalError as exception:
+    except AuthenticationError as exception:
         print(f"::error::Active Directory Authentication Library Error: {exception}")
         return
     except WorkspaceException as exception:
