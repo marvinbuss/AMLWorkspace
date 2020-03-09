@@ -2,7 +2,8 @@ import os
 import json
 from azureml.core import Workspace
 from azureml.exceptions import WorkspaceException, AuthenticationException
-from azureml.core.authentication import ServicePrincipalAuthentication
+from azureml.core.authentication import ServicePrincipalAuthentication, Adal
+from adal.adal_error import AdalError
 
 
 def main():
@@ -39,12 +40,15 @@ def main():
     except AuthenticationException as exception:
         print(f"::error::Could not retrieve user token. Please paste output of `az ad sp create-for-rbac --name <your-sp-name> --role contributor --scopes /subscriptions/<your-subscriptionId>/resourceGroups/<your-rg> --sdk-auth` as value of secret variable: AZURE_CREDENTIALS: {exception}")
         return
+    except AdalError as exception:
+        print(f"::error::Active Directory Authentication Library Error: {exception}")
+        return
     except WorkspaceException as exception:
         print(f"::debug::Loading existing Workspace failed: {exception}")
         if parameters.get("createWorkspace", False):
             try:
                 print("::debug::Creating new Workspace")
-                ws = Workspace(
+                ws = Workspace.create(
                     name=parameters.get("name", None),
                     subscription_id=azure_credentials.get("subscriptionId", ""),
                     resource_group=parameters.get("resourceGroup", None),
