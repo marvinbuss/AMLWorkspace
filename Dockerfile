@@ -15,4 +15,4 @@ ADD requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
 COPY /code /code
-ENTRYPOINT ["./code/entrypoint.sh"]
+ENTRYPOINT ["/code/entrypoint.sh"]
