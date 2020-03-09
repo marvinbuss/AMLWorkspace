@@ -10,3 +10,5 @@ jobs:
       - name: Self test
         id: selftest
         uses: marvinbuss/AMLWorkspace@master
+        with:
+          azureCredentials: ${{ secrets.AZURE_CREDENTIALS }}
