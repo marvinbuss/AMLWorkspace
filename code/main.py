@@ -11,7 +11,7 @@ def main():
     # Loading input values
     print("::debug::Loading input values")
     parameters_file = os.environ.get("INPUT_PARAMETERSFILE", default="workspace.json")
-    azure_credentials = os.environ.get("INPUT_AZURECREDENTIALS ", default={})
+    azure_credentials = os.environ.get("INPUT_AZURECREDENTIALS ")
     print(type(azure_credentials))
 
     # Loading parameters file
