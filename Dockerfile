@@ -14,5 +14,6 @@ ADD requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
 
-ADD main.py .
-ENTRYPOINT ["python", "main.py"]
+RUN mkdir code
+ADD main.py code/main.py
+ENTRYPOINT ["python", "code/main.py"]
