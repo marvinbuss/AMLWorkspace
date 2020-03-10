@@ -1,4 +1,4 @@
-FROM python:3
+FROM marvinbuss/aml-docker:latest
 
 LABEL "com.github.actions.name"="Azure Machine Learning Workspace"
 LABEL "com.github.actions.description"="Connect to or create an Azure Machine Learning Workspace with this GitHub Action"
@@ -9,10 +9,6 @@ LABEL version="1.0.0"
 LABEL repository="https://github.com/marvinbuss/AMLWorkspace"
 LABEL homepage="https://github.com/marvinbuss/AMLWorkspace"
 LABEL maintainer=""
-
-ADD requirements.txt requirements.txt
-
-RUN pip install -r requirements.txt
 
 COPY /code /code
 ENTRYPOINT ["/code/entrypoint.sh"]
