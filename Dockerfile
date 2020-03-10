@@ -1,4 +1,4 @@
-FROM python:3-alpine
+FROM python:3-slim
 
 LABEL "com.github.actions.name"="Azure Machine Learning Workspace"
 LABEL "com.github.actions.description"="Connect to or create an Azure Machine Learning Workspace with this GitHub Action"
