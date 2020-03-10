@@ -1,7 +1,6 @@
 # Azure Machine Learning Workspace Action
 
 
-
 ## Usage
 
 Description.
