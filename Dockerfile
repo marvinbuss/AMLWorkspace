@@ -10,8 +10,5 @@ LABEL repository="https://github.com/marvinbuss/AMLWorkspace"
 LABEL homepage="https://github.com/marvinbuss/AMLWorkspace"
 LABEL maintainer=""
 
-#ADD requirements.txt requirements.txt
-#RUN pip install -r requirements.txt
-
 COPY /code /code
 ENTRYPOINT ["/code/entrypoint.sh"]
