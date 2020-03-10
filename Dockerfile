@@ -1,4 +1,4 @@
-FROM docker.pkg.github.com/marvinbuss/aml-docker/aml-docker:latest
+FROM marvinbuss/aml-docker:latest
 
 LABEL "com.github.actions.name"="Azure Machine Learning Workspace"
 LABEL "com.github.actions.description"="Connect to or create an Azure Machine Learning Workspace with this GitHub Action"
